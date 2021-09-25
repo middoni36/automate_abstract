@@ -37,7 +37,8 @@ class automate:
 
 
     def register(self,client):
-
+        client_pass1="x"
+        client_pass2="y"
         #register the client store his objext in self.current_client and in registred_clients
         while client_pass1 != client_pass2 :
             client_pass1=input("please insert your own password = ")
@@ -53,13 +54,13 @@ class automate:
 
     def print_mainmenu(self):
         global h_choice
-        h_choice=input("choose a Function : \n 1)check-transaction  2) get_deposit  3)set_deposit  4)Transfer_money ")
+        h_choice=input("choose a Function : \n 1)check-transaction  2) get_deposit  3)set_deposit  4)Transfer_money 5) Print log-history ")
         self.functions_dict[h_choice]()
 
 
     def check_client(self,client):
         global choice
-        self.logg_manager.setuser_id(client.get_id())
+        self.logg_manager.setuser_id(client.get_id()) ## client.id >>> [historylogin1,historylogin2]
         if client.get_id() in automate.registred_clients:
             self.current_client=client
             print("client Already registred.....")
@@ -97,7 +98,7 @@ class client:
         self.age=age
         self.id=self.choose_rand_id()
         self.transactions={}
-        self.deposit=0
+        self.deposit=random.getrandbits(8)
         self.password=""
 
 
